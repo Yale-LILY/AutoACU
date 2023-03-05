@@ -28,7 +28,7 @@ You may also use the metrics directly without installing the package by importin
 
 ## Usage
 
-The model checkpoints for A2CU and A3CU are available on the [HuggingFace model hub](https://huggingface.co/models).
+The model checkpoints for A2CU and A3CU are available on the HuggingFace model hub.
 
 ### A2CU
 A2CU needs to be initialized with two models, one for ACU generation and one for ACU matching.
