@@ -62,7 +62,7 @@ Below is an example of using A3CU to evaluate the similarity between two text se
 from autoacu import A3CU
 candidates, references = ["This is a test"], ["This is a test"]
 a3cu = A3CU(device=0)  # the GPU device to use
-recall_scores, prec_scores, f1_scores = A3CU.score(
+recall_scores, prec_scores, f1_scores = a3cu.score(
     references=references,
     candidates=candidates,
     batch_size=16 # the batch size for ACU generation
