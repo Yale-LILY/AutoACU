@@ -23,7 +23,8 @@ class A3CU():
     """
     Efficient and Interpretable Automatic Summarization Evaluation Metrics
     """
-    def __init__(self, model_pt: str="Yale-LILY/a3cu", device: int=0, max_len: int=254, cpu: bool=False):
+    def __init__(self, model_pt: str="Yale-LILY/a3cu", max_len: int=254, cpu: bool=False,
+                device=torch.device("cuda:0" if torch.cuda.is_available() else "cpu")):
         """
         Args:
             model_pt: path to the HuggingFace model
@@ -31,10 +32,8 @@ class A3CU():
             max_len: max length of the input
             cpu: use CPU instead of GPU
         """
-        if cpu:
-            self.device = "cpu"
-        else:
-            self.device = device
+        
+        self.device = device
         self.model = BertClassifier.from_pretrained(model_pt).to(self.device)
         self.tok = BertTokenizer.from_pretrained(model_pt)
         self.model.eval()
