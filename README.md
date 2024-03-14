@@ -53,6 +53,9 @@ recall_scores, prec_scores, f1_scores = a2cu.score(
     acu_path=None # the path to save the generated ACUs
     )
 print(f"Recall: {recall_scores[0]:.4f}, Precision {prec_scores[0]:.4f}, F1: {f1_scores[0]:.4f}")
+
+#Sample Output:
+Recall: 0.1250, Precision 0.1250, F1: 0.1250
 ```
 
 ### A3CU
@@ -69,4 +72,7 @@ recall_scores, prec_scores, f1_scores = a3cu.score(
     output_path=None # the path to save the evaluation results
     )
 print(f"Recall: {recall_scores[0]:.4f}, Precision {prec_scores[0]:.4f}, F1: {f1_scores[0]:.4f}")
+
+#Sample Output:
+Recall: 0.8007, Precision 0.8007, F1: 0.8007
 ```
