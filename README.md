@@ -42,7 +42,7 @@ Below is an example of using A2CU to evaluate the similarity between two text se
 ```python
 from autoacu import A2CU
 candidates, references = ["This is a test"], ["This is a test"]
-a2cu = A2CU()  # the GPU device to use
+a2cu = A2CU()
 recall_scores, prec_scores, f1_scores = a2cu.score(
     references=references,
     candidates=candidates,
@@ -61,7 +61,7 @@ Below is an example of using A3CU to evaluate the similarity between two text se
 ```python
 from autoacu import A3CU
 candidates, references = ["This is a test"], ["This is a test"]
-a3cu = A3CU()  # the GPU device to use
+a3cu = A3CU()
 recall_scores, prec_scores, f1_scores = a3cu.score(
     references=references,
     candidates=candidates,
