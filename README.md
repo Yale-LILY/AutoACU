@@ -47,9 +47,9 @@ recall_scores, prec_scores, f1_scores = a2cu.score(
     references=references,
     candidates=candidates,
     generation_batch_size=2, # the batch size for ACU generation
-    matching_batch_size=16 # the batch size for ACU matching
-    output_path=None # the path to save the evaluation results
-    recall_only=False # whether to only compute the recall score
+    matching_batch_size=1,6 # the batch size for ACU matching
+    output_path=None, # the path to save the evaluation results
+    recall_only=False, # whether to only compute the recall score
     acu_path=None # the path to save the generated ACUs
     )
 print(f"Recall: {recall_scores[0]:.4f}, Precision {prec_scores[0]:.4f}, F1: {f1_scores[0]:.4f}")
@@ -65,7 +65,7 @@ a3cu = A3CU()
 recall_scores, prec_scores, f1_scores = a3cu.score(
     references=references,
     candidates=candidates,
-    batch_size=16 # the batch size for ACU generation
+    batch_size=16, # the batch size for ACU generation
     output_path=None # the path to save the evaluation results
     )
 print(f"Recall: {recall_scores[0]:.4f}, Precision {prec_scores[0]:.4f}, F1: {f1_scores[0]:.4f}")
