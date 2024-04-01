@@ -1,7 +1,8 @@
 # AutoACU - Interpretable and Efficient Automatic Summarization Evaluation
 
-This github repository contains the source code of the AutoACU package for automatic summarization evaluation.
-<!-- Please see the following preprint for more details: []. -->
+This github repository contains the source code of the AutoACU package for automatic summarization evaluation, proposed in our paper [Towards Interpretable and Efficient Automatic Reference-Based Summarization Evaluation](https://aclanthology.org/2023.emnlp-main.1018/), EMNLP 2023
+
+
 AutoACU contains two types of automatic evaluation metrics:
 - **A2CU**: a two-step automatic evaluation metric that first extracts atomic content units (ACUs) from one text sequence and then evaluates the extracted ACUs against another text sequence.
 - **A3CU**: an accelerated version of A2CU that directly computes the similarity between two text sequences without extracting ACUs, but with the similar evaluation target.
