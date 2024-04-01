@@ -18,7 +18,7 @@ git clone https://github.com/Yale-LILY/AutoACU
 cd AutoACU
 pip install .
 ```
-The necessary dependencies include PyTorch and HuggingFace's Transformers.
+The necessary dependencies include PyTorch and HuggingFace's Transformers. With the usage of the T5 Tokenizer in the Transformers class you will also need to have the SentencePiece package installed as well.
 It should be compatible with any of the recent versions of PyTorch and Transformers.
 However, to make sure that the dependencies are compatible,
 you may run the following command:
@@ -43,17 +43,20 @@ Below is an example of using A2CU to evaluate the similarity between two text se
 ```python
 from autoacu import A2CU
 candidates, references = ["This is a test"], ["This is a test"]
-a2cu = A2CU(device=0)  # the GPU device to use
+a2cu = A2CU()
 recall_scores, prec_scores, f1_scores = a2cu.score(
     references=references,
     candidates=candidates,
     generation_batch_size=2, # the batch size for ACU generation
-    matching_batch_size=16 # the batch size for ACU matching
-    output_path=None # the path to save the evaluation results
-    recall_only=False # whether to only compute the recall score
+    matching_batch_size=16, # the batch size for ACU matching
+    output_path=None, # the path to save the evaluation results
+    recall_only=False, # whether to only compute the recall score
     acu_path=None # the path to save the generated ACUs
     )
 print(f"Recall: {recall_scores[0]:.4f}, Precision {prec_scores[0]:.4f}, F1: {f1_scores[0]:.4f}")
+
+#Sample Output:
+Recall: 0.1250, Precision 0.1250, F1: 0.1250
 ```
 
 ### A3CU
@@ -62,12 +65,15 @@ Below is an example of using A3CU to evaluate the similarity between two text se
 ```python
 from autoacu import A3CU
 candidates, references = ["This is a test"], ["This is a test"]
-a3cu = A3CU(device=0)  # the GPU device to use
+a3cu = A3CU()
 recall_scores, prec_scores, f1_scores = a3cu.score(
     references=references,
     candidates=candidates,
-    batch_size=16 # the batch size for ACU generation
+    batch_size=16, # the batch size for ACU generation
     output_path=None # the path to save the evaluation results
     )
 print(f"Recall: {recall_scores[0]:.4f}, Precision {prec_scores[0]:.4f}, F1: {f1_scores[0]:.4f}")
+
+#Sample Output:
+Recall: 0.8007, Precision 0.8007, F1: 0.8007
 ```

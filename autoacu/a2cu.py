@@ -13,7 +13,8 @@ class A2CU():
     Automatic ACU Generation and Matching
     """
     def __init__(self, generation_pt: str="Yale-LILY/a2cu-generator",
-                  matching_pt: str="Yale-LILY/a2cu-classifier", device: int=0, no_ref: bool=True):
+                  matching_pt: str="Yale-LILY/a2cu-classifier", no_ref: bool=True,
+                  device=torch.device("cuda:0" if torch.cuda.is_available() else "cpu")):
         """
         Args:
             generation_pt: path to the HuggingFace model for generation
@@ -165,8 +166,8 @@ class A2CU():
                         segs = torch.tensor(segs)
                         input_ids.append(src_input_ids)
                         token_type_ids.append(segs)
-                    input_ids = pad(input_ids, tok.pad_token_id).to(f"cuda:{gpuid}")
-                    token_type_ids = pad(token_type_ids, 0).to(f"cuda:{gpuid}")
+                    input_ids = pad(input_ids, tok.pad_token_id).to(self.device)
+                    token_type_ids = pad(token_type_ids, 0).to(self.device)
                     attenion_mask = (input_ids != tok.pad_token_id)
                     yield {
                         "input_ids": input_ids,
