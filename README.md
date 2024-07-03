@@ -76,3 +76,4 @@ print(f"Recall: {recall_scores[0]:.4f}, Precision {prec_scores[0]:.4f}, F1: {f1_
 
 ### Warning
 A2CU and A3CU may not work properly on short text sequences (e.g., less than 10 words) due to the limitations of the ACU generation model, especially for non-reducible text sequences.
+Please see https://github.com/Yale-LILY/AutoACU/issues/1 for details.
