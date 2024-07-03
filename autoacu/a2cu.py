@@ -86,17 +86,17 @@ class A2CU():
                         input_ids=text_id,
                         attention_mask=input_mask,
                         max_length=512,
-                        min_length=10,
                         num_beams=4,
                         length_penalty=1.0,
                         early_stopping=True,
                     )
                     dec = [self.generation_tok.decode(g, skip_special_tokens=True, clean_up_tokenization_spaces=False) for g in summaries]
                     for (i, x) in enumerate(dec):
+                        _acus = list(set(x.split("|||")))
                         print(json.dumps({
-                            "acus": x.split("|||"),
+                            "acus": _acus,
                         }), file=f, flush=True)
-                        acus.append(x.split("|||"))
+                        acus.append(_acus)
         self.generation_model = self.generation_model.cpu()
         return acus
 

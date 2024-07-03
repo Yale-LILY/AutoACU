@@ -42,16 +42,17 @@ Please note that to use A2CU, you may need to have a GPU with at least 16GB memo
 Below is an example of using A2CU to evaluate the similarity between two text sequences.
 ```python
 from autoacu import A2CU
-candidates, references = ["This is a test"], ["This is a test"]
+candidates = ["Real Madrid have fought off all the competition to win the 2023/24 UEFA Champions League after beating Borussia Dortmund 2-0 in the final at Wembley Stadium on 1 June."]
+references = ["On June 1st, Real Madrid emerged victorious in the 2023/24 UEFA Champions League, defeating Borussia Dortmund 2-0 in the final at Wembley Stadium, overcoming all competitors to claim the title."]
 a2cu = A2CU(device=0)  # the GPU device to use
 recall_scores, prec_scores, f1_scores = a2cu.score(
     references=references,
     candidates=candidates,
     generation_batch_size=2, # the batch size for ACU generation
-    matching_batch_size=16 # the batch size for ACU matching
-    output_path=None # the path to save the evaluation results
-    recall_only=False # whether to only compute the recall score
-    acu_path=None # the path to save the generated ACUs
+    matching_batch_size=16, # the batch size for ACU matching
+    output_path=None, # the path to save the evaluation results
+    recall_only=False, # whether to only compute the recall score
+    acu_path=None, # the path to save the generated ACUs
     )
 print(f"Recall: {recall_scores[0]:.4f}, Precision {prec_scores[0]:.4f}, F1: {f1_scores[0]:.4f}")
 ```
@@ -61,13 +62,17 @@ The default model checkpoint for A3CU is [Yale-LILY/a3cu](https://huggingface.co
 Below is an example of using A3CU to evaluate the similarity between two text sequences.
 ```python
 from autoacu import A3CU
-candidates, references = ["This is a test"], ["This is a test"]
+candidates = ["Real Madrid have fought off all the competition to win the 2023/24 UEFA Champions League after beating Borussia Dortmund 2-0 in the final at Wembley Stadium on 1 June."]
+references = ["On June 1st, Real Madrid emerged victorious in the 2023/24 UEFA Champions League, defeating Borussia Dortmund 2-0 in the final at Wembley Stadium, overcoming all competitors to claim the title."]
 a3cu = A3CU(device=0)  # the GPU device to use
 recall_scores, prec_scores, f1_scores = a3cu.score(
     references=references,
     candidates=candidates,
-    batch_size=16 # the batch size for ACU generation
-    output_path=None # the path to save the evaluation results
+    batch_size=16, # the batch size for ACU generation
+    output_path=None, # the path to save the evaluation results
     )
 print(f"Recall: {recall_scores[0]:.4f}, Precision {prec_scores[0]:.4f}, F1: {f1_scores[0]:.4f}")
 ```
+
+### Warning
+A2CU and A3CU may not work properly on short text sequences (e.g., less than 10 words) due to the limitations of the ACU generation model, especially for non-reducible text sequences.
